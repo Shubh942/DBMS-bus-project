@@ -7,7 +7,7 @@
     body{
        
         min-height: 100vh;
-        background: linear-gradient(#270361,#7597de);
+        /* background: linear-gradient(#270361,#7597de); */
         
         overflow-x: hidden;
     }
@@ -18,6 +18,14 @@
         border-radius: 30vh;
         
         mix-blend-mode: screen;
+    }
+    .container{
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 50px 0;
+    }
+    nav{
+        background: linear-gradient(#270361,#7597de);
     }
     .navi{
         
@@ -77,8 +85,16 @@
         width: 25vw;
       
         height: 25vh;
-        box-shadow: 10px 10px 5px #888888;
+        /* box-shadow: 10px 10px 5px #888888; */
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        transition: all 0.3s !important;
     }
+
+    .card:hover{
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        transform: translateY(-20px) !important;
+    }
+
     .card img{
         height: 35vh;
         
@@ -91,6 +107,7 @@
     }
     .text{
         background-color: aliceblue;
+        /* padding: 20px 40px; */
     }
     .parallax{
         background: url("/images/4.jpg") repeat fixed 0% 25%;
