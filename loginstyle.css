@@ -1,0 +1,61 @@
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  /* background: #fccb90; */
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  /* background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593); */
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593); */
+  /* Created with https://www.css-gradient.com */
+
+  /* background: #683292;
+  background: -webkit-linear-gradient(top left, #683292, #ee1683);
+  background: -moz-linear-gradient(top left, #683292, #ee1683);
+  background: linear-gradient(to bottom right, #683292, #ee1683); */
+
+background: linear-gradient(132deg, rgb(30, 144, 255) 0.00%, rgb(138, 43, 226) 100.00%);
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+  }
+}
+body {
+  height: 100vh;
+  background: #7597de;
+}
+.card {
+  height: 94vh;
+}
+.card-body {
+  margin-top: -20px;
+}
+.col-lg-6 {
+  height: 94vh;
+}
+.container {
+  margin-top: -3vh;
+}
+.h-100 {
+  background: linear-gradient(#270361, #7597de) !important;
+  height: 100vh;
+}
+/* .all{
+   
+    background: linear-gradient(#270361,#7597de) !important;
+}
+.card{
+    margin-top: -8vh;
+    height: 95vh;
+}
+.text-white{
+    height:95vh;
+} */
