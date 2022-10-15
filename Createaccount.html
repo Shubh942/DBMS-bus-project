@@ -31,23 +31,26 @@
       
                         <div class="form-outline mb-4">
                           <label class="form-label" for="form2Example11">Name</label>
-                          <input type="text" id="form2Example11" class="form-control"
-                            placeholder="Name" />
+                          <input type="text" id="txtName" class="form-control"
+                            placeholder="Name" required />
+                            <span id = "message1" style="color:red"> </span>
                         </div>
       
                         <div class="form-outline mb-4">
                           <label class="form-label" for="form2Example22">Roll Number</label>
-                          <input type="text" id="form2Example22" class="form-control"
-                          placeholder="Roll No" />
+                          <input type="text" id="txtRollNo" class="form-control"
+                          placeholder="Roll No" onclick="return Validate1()" />
+                          <span id = "message2" style="color:red"> </span>
                         </div>
                         <div class="form-outline mb-4">
                           <label class="form-label" for="form2Example22">Email-ID</label>
-                          <input type="email"  class="form-control"
+                          <input type="email" id="txtEmail" onclick="return Validate2()" class="form-control"
                           placeholder="e-mail id" />
+                          <span id = "message3" style="color:red"> </span>
                         </div>
                         <div class="form-outline mb-4">
                           <label class="form-label" for="form2Example22">Password</label>
-                          <input type="password" id="txtPassword" class="form-control"
+                          <input type="password" onclick="return Validate3()" id="txtPassword" class="form-control"
                           placeholder="Password" />
                         </div>
                         <div class="form-outline mb-4">
