@@ -1,0 +1,27 @@
+{
+  "name": "dbms-bus-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shubh942/DBMS-bus-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shubh942/DBMS-bus-project/issues"
+  },
+  "homepage": "https://github.com/Shubh942/DBMS-bus-project#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.8.0",
+    "path": "^0.12.7"
+  }
+}
