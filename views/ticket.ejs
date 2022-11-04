@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booking</title>
+    <link rel="stylesheet" href="/stylesheets/ticket.css">
+</head>
+
+<body>
+    <nav>
+        <div class="navi">
+            <div class="im">
+                <img src="/images/bus.jpg" alt="logo" />
+            </div>
+            <div class="head">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- <div class="bck"></div> -->
+    <div class="ticket">
+        <img src="images/ticket-background 2.jpg" alt="img" id="img">
+        <form class="form" action="action4" method="post">
+
+            <h3 class="head">BOOK YOUR TICKET</h3>
+
+
+            <br>
+            <div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example22">From :</label>
+                    <select name="From" class="places">
+                        <option value="op" name="From">-Select-</option>
+                        <option value="Institute" name="From">Institute</option>
+                        <option value="City" name="From">City</option>
+                        <span id="message2" style="color:red"> </span>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <br><br>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example22">To :</label>
+                    <select name="To" class="places">
+                        <option value="op" name="To">-Select-</option>
+                        <option value="Institute" name="To">Institute</option>
+                        <option value="City" name="To">City</option>
+                        <span id="message1" style="color:red"> </span>
+                    </select>
+                </div>
+            </div>
+            <br><br>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example11">Date of Booking :</label>
+                <input type="date" id="txtName" class="form-control" name="Date" placeholder="Date" required />
+                <span id="message" style="color:red"> </span>
+            </div>
+            <br><br>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example11">Time of Booking :</label>
+                <select name="departure_time" class="places1" >
+                    <option value="op" name="departure_time">-Time-</option>
+                    <option value="3:30 PM" name="departure_time">3:30 PM</option>
+                    <option value="4:45 PM" name="departure_time">4:45 PM</option>
+                    <span id="message3" style="color:red"> </span>
+                </select>
+            </div>
+            <br><br>
+            <center>
+                <div>
+                    <button type="submit" value="submit" class="book">Book</button>
+                </div>
+            </center>
+            <img src="images/ticket.jpg" alt="img" id="img1">
+        </form>
+    </div>
+</body>
+
+</html>
