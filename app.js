@@ -11,9 +11,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter= require('./routes/login');
 var createaccountRouter= require('./routes/createaccount');
+var forgetRouter= require('./routes/forget');
 
 var app = express();
-
+app.use(express.json());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -45,6 +46,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/createaccount', createaccountRouter);
+app.use('/forget', forgetRouter);
 
 app.post('/action1',(req,res)=>{
   let nam=req.body.userid;
@@ -99,6 +101,43 @@ app.post('/action2',(req,res)=>{
    })
 });
 
+
+app.post("/action3",(req,res)=>{
+  let nam=req.body.userid;
+  // let from="impostercrewfreedom@gmail.com";
+  let from="impostercrewfreedom@gmail.com";
+   let sql=`SELECT password from passenger where username='${nam}' `;
+   db.query(sql,(err,result)=>{
+       if (err) {
+           throw err;
+       }else{
+      //  res.send("Password sent sucessfully");
+       var pas=result[0].password;
+       console.log(pas);
+      
+       }
+       var transporter=nodemailer.createTransport({
+          service:'gmail',
+          auth:{
+              user: 'impostercrewfreedom@gmail.com',
+              pass: 'avuwpktrouxkalqw'
+          }
+       });
+       var mailoptions={
+          from: from,
+          to: nam,
+          subject: 'Forgotted Password',
+          text: `Your Password is ${pas}.`
+       };
+       transporter.sendMail(mailoptions,(err,result)=>{
+          if (err) {
+              console.log(err);
+          } else{
+              console.log("Email send: "+result.response);
+          }
+      })
+   })
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
