@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="/stylesheets/payment.css">
+</head>
+
+<body>
+    <nav>
+        <div class="navi">
+            <div class="im">
+                <img src="/images/bus.jpg" alt="logo" />
+            </div>
+            <div class="head">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="index.ejs">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- <div class="bck"></div> -->
+    <div class="ticket">
+        <!-- <img src="images/ticket-background 2.jpg" alt="img" id="img"> -->
+        
+        <form class="form" action="action6" method="post">
+<br><br><br>
+            <h3 class="head">Pay ₹15 on UpiId :8000759055@paytm</h3>
+             
+
+            <br>
+            <div>
+                <div class="form-outline mb-4">
+                    <h2 style="margin: 0 12vw ;">OR</h2>
+                    <img class="QR" src="images/QR.jpg">
+                </div>
+            </div>
+             <div>
+                <br><br>
+                <div class="form-outline mb-4">
+                    <label class="QR" for="form2Example22">Transaction Id :</label>
+                    <input type="text" id="form2Example22" name="TransactionId" class="form-control" />
+                </div>
+            </div>
+            <br><br>
+            
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example11">Upload Screenshoot</label>
+                <input type="file" accept="image/*" id="myFile" name="filename">
+                <span id="message" style="color:red"> </span>
+            <!-- </div>
+            <br><br>
+            <div> -->
+                <br> <br>
+                <button type="submit" value="submit" class="book" onclick="myFunction()">Submit</button>
+                <img id="imagePreview">
+            </div>
+            
+            
+        </form>
+    </div>
+</body>
+
+</html>

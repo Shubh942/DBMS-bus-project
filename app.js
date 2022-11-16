@@ -13,6 +13,7 @@ var loginRouter = require('./routes/login');
 var createaccountRouter = require('./routes/createaccount');
 var forgetRouter = require('./routes/forget');
 var ticketRouter = require('./routes/ticket');
+var paymentRouter = require('./routes/payment');
 
 var app = express();
 app.use(express.json());
@@ -49,7 +50,12 @@ app.use('/login', loginRouter);
 app.use('/createaccount', createaccountRouter);
 app.use('/forget', forgetRouter);
 app.use('/ticket', ticketRouter);
-let nam="s1@gmail.com";
+app.use('/payment',paymentRouter);
+
+
+// let nam="s1@gmail.com";
+
+
 app.post('/action1', (req, response) => {
   nam = req.body.userid;
   let passwd = req.body.pass;
@@ -150,22 +156,64 @@ app.post('/action4', (req, res) => {
   let Date=req.body.Date;
   console.log(To, departure_time,From,Date);
     let sql = `INSERT INTO bus_info (departure_time,drop_point,pick_up,date_book,Email_Id) VALUES ('${departure_time}','${To}','${From}','${Date}','${nam}') `;
+    if(From!=To){
   db.query(sql, (err, result) => {
     if (err) {
       throw err;
     } else {
-      res.redirect("/login");
+      res.redirect("/payment");
       console.log('Booked...');
     }
     })
-  })
+  }
+  else{
+    res.send("Please Enter the Valid Details");
+  }
+  });
 
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
-
+  app.post('/action5', (req, res) => {
+    let date_book=req.body.date_book;
+    let departure_time=req.body.departure_time;
+    let drop_point=req.body.drop_point;
+    let sql =`SELECT count(*) as Available_Seats From bus_info WHERE drop_point='${drop_point}' and date_book='${date_book}' and departure_time='${departure_time}'`
+    // console.log(drop_point,date_book,departure_time);
+    db.query(sql, (err, result) => {
+     if (err) {
+       throw err;
+     } else {
+      a=result[0].Available_Seats;
+      let b=40-a;
+       res.render("index",{
+        title:b,
+        title1:drop_point,
+        title2:departure_time,
+        title3:date_book
+      });
+      console.log(date_book);
+       console.log('Checked...');
+     }
+     })
+    });
+    app.post('/action6', (req, res) => {
+      let TransactionId = req.body.TransactionId;
+      let i  = req.body.filename;
+      
+      console.log(TransactionId,image);
+      //   let sql = `INSERT INTO bus_info (departure_time,drop_point,pick_up,date_book,Email_Id) VALUES ('${departure_time}','${To}','${From}','${Date}','${nam}') `;
+      //   if(From!=To){
+      // db.query(sql, (err, result) => {
+      //   if (err) {
+      //     throw err;
+      //   } else {
+      //     res.redirect("/payment");
+      //     console.log('Booked...');
+      //   }
+      //   })
+      // }
+      // else{
+      //   res.send("Please Enter the Valid Details");
+      // }
+      });
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development

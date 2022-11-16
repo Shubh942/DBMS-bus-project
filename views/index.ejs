@@ -48,15 +48,34 @@
         data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-once="true"
-      >
+      > 
         <img src="/images/1.jpg" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <h5 class="card-title">Check Available Seats</h5>
+         
+            <form action="action5" method="post">
+              <p class="card-text">
+                <label class="form-label" for="form2Example22">To :</label>
+                <select name="drop_point" class="places">
+                  <option value="op" name="drop_point"><%= title1 %> </option>
+                  <option value="Institute" name="drop_point">Institute</option>
+                  <option value="City" name="drop_point">City</option>
+                  <span id="message1" style="color:red"> </span>
+                 
+              </select>
+            <input type="date" id="txtName" class="form-control" name="date_book" placeholder="dd/mm/yyyy" value=" <%= title3 %> " required />
+            <select name="departure_time" class="places1">
+              <option value="op" name="departure_time"> <%= title2 %> </option>
+              <option value="3:30 PM" name="departure_time">3:30 PM</option>
+              <option value="4:45 PM" name="departure_time">4:45 PM</option>
+              <span id="message3" style="color:red"> </span>
+          </select>
+        </p>
+        <p>Avaliable seats <%= title %> </p>
+          <button type="submit" value="submit" id="check" class="btn btn-primary">Check</button>
+          
+        </form>
+     
         </div>
       </div>
       <div
