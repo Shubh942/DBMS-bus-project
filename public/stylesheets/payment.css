@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+
+    min-height: 100vh;
+    /* background: linear-gradient(#270361,#7597de); */
+    background-color: #3c0d89;
+    overflow-x: hidden;
+}
+
+.im img {
+    height: 10vh;
+    margin-left: 20vh;
+    width: 10vw;
+    border-radius: 30vh;
+
+    mix-blend-mode: screen;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+nav {
+    background: linear-gradient(#270361, #7597de);
+}
+
+.navi {
+
+    height: 14vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.head ul {
+    display: flex;
+}
+
+.head ul li {
+    list-style: none;
+    margin-left: 5vh;
+}
+
+.bus::before {
+    background: linear-gradient(to bottom, #270361, transparent);
+}
+
+.head ul li a {
+    text-decoration: none;
+    color: aliceblue;
+    padding: 10px 25px;
+    font-size: 3vh;
+    transition: all 0.3s;
+}
+
+.head ul li a:hover {
+    background-color: black;
+    border-radius: 10vh;
+
+}
+
+.ticket {
+    height: 80vh;
+    background-color: #d6c6ef;
+    /* background: linear-gradient(#270361,#7597de); */
+
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin: 5vh 45vh 40vw;
+    /* margin : 0 30vw;
+margin-top: 10vh;
+margin-bottom: 50vh; */
+    border-radius: 5vh;
+}
+
+.form {
+    margin-left: 10vw;
+}
+
+.bck {
+    height: 40vh;
+    background-image: url('images/ticket-background 2.jpg');
+}
+
+.head {
+    margin: 0 4vw;
+}
+
+.places {
+    width: 30vw;
+}
+
+.places1 {
+    width: 25vw;
+}
+
+.book {
+    width: 5vw;
+    margin: 0 12vw;
+}
+.QR{
+    width: 20vw;
+    margin: 0 4vw;
+}
+.form-label{
+    margin: 0 4vw;
+}
+/* #myFile{
+    margin: 0 1vw;
+} */
+#img {
+    width: 20vw;
+    height: 20vh;
+    margin-left: 2vh;
+    margin-top: 2vh;
+    border-radius: 3vh;
+}
+
+#img1 {
+    width: 20vw;
+    height: 18vh;
+    margin-left: 36vh;
+    margin-top: 2vh;
+    border-radius: 3vh;
+}
