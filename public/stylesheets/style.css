@@ -110,8 +110,9 @@
         /* padding: 20px 40px; */
     }
     .parallax{
-        background: url("/images/4.jpg") repeat fixed 0% 25%;
-       height: 80vh;
+        background: url("/images/4.jpg") no-repeat fixed 0% 25%;
+        background-size: 100vw 100vh;
+        height: 80vh;
     }
     .ban{
         padding-bottom: 30%;
