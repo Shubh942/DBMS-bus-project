@@ -26,7 +26,7 @@
         </div>
         <div class="head">
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="/index">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="/login">Login</a></li>
@@ -71,8 +71,11 @@
               <span id="message3" style="color:red"> </span>
           </select>
         </p>
-        <p>Avaliable seats <%= title %> </p>
-          <button type="submit" value="submit" id="check" class="btn btn-primary">Check</button>
+        <p>
+        <span id="message" style="color:red"></span>
+        <span id="message4" style="color:red"><%= title %> </span>
+        </p>
+          <button onclick="Validate1()" type="submit" value="submit" id="check" class="btn btn-primary">Check</button>
           
         </form>
      
@@ -86,12 +89,11 @@
       >
         <img src="/images/2.jpg" class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <h5 class="card-title">Schdule</h5>
           <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Check The TimeTable of the Bus Service.
           </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="/timetable" class="btn btn-primary">Check</a>
         </div>
       </div>
       <div
@@ -103,12 +105,11 @@
       >
         <img src="/images/3.jpg" class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <h5 class="card-title">Cancelation Of tiCket</h5>
           <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Cancel Your Ticket.
           </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="/login" class="btn btn-primary">Go Here</a>
         </div>
       </div>
     </div>
@@ -222,5 +223,6 @@
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
+    <script src="/javascripts/seats.js"></script>
   </body>
 </html>

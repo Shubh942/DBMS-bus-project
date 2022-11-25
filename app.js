@@ -29,6 +29,7 @@ var createaccountRouter = require('./routes/createaccount');
 var forgetRouter = require('./routes/forget');
 var ticketRouter = require('./routes/ticket');
 var paymentRouter = require('./routes/payment');
+var timetableRouter = require('./routes/timetable');
 
 var app = express();
 app.use(express.json());
@@ -66,6 +67,8 @@ app.use('/createaccount', createaccountRouter);
 app.use('/forget', forgetRouter);
 app.use('/ticket', ticketRouter);
 app.use('/payment',paymentRouter);
+app.use('/timetable',timetableRouter);
+
 
 
 
@@ -187,6 +190,7 @@ app.post('/action2', (req, res) => {
 
 app.post("/action3", (req, res) => {
   let nam = req.body.userid;
+  namq = nam;
   // let from="impostercrewfreedom@gmail.com";
   let from = "impostercrewfreedom@gmail.com";
   let sql = `SELECT password from passenger where username='${nam}' `;
