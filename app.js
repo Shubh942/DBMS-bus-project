@@ -6,7 +6,22 @@ var logger = require('morgan');
 var mysql = require('mysql');
 var nodemailer = require('nodemailer');
 var router = express.Router();
+
+
+
+
+
+
+
+
+
 // const app=express();
+
+
+
+
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
@@ -55,15 +70,56 @@ app.use('/payment',paymentRouter);
 app.use('/timetable',timetableRouter);
 
 
-let namq;
 
 
+let namq
+
+let sample2
+let sample1
 app.post('/action1', (req, response) => {
   nam = req.body.userid;
   let passwd = req.body.pass;
   //  let post={userid:`${nam}`,pass:`${passwd}`}
+  if (nam=='admin@gmail.com' && passwd=='12345') {
+    console.log(nam, passwd);
+    
+    let sql = `SELECT * FROM passenger`;
+    let sql2 = `SELECT * FROM bus_info`;
+    db.query(sql2,(err,datafromtable2)=>{
+      if (err) {
+        throw err;
+    }
+    
+    // console.log(datafromtable2);
+    sample2=datafromtable2;
+      
+    })
+
+
+    db.query(sql,(err,datafromtable)=>{
+      if (err) {
+          throw err;
+      }
+      sample1=datafromtable
+      response.render("admin",{
+          title:'Login_Table',
+          id:'ID',
+          user:'Username',
+          pass:'pass',
+          action:'show',
+          mess:'Enter query',
+          sampledata:datafromtable,
+          sampledata2:sample2
+      })
+      // console.log(datafromtable);
+  })
+
+    
+  }
+  else{
   let sql = `SELECT * FROM passenger WHERE username = '${nam}' AND password = '${passwd}'`;
   console.log(nam, passwd);
+  namq=nam;
   db.query(sql, (error, results) => {
     if (error) throw error;
     // If the account exists
@@ -74,9 +130,18 @@ app.post('/action1', (req, response) => {
     } else {
       response.send('Incorrect Username and/or Password!');
     }
-    
+  
   });
+}
 });
+
+
+
+
+
+
+
+
 
 app.post('/action2', (req, res) => {
   let nam = req.body.userid;
@@ -113,6 +178,15 @@ app.post('/action2', (req, res) => {
     })
   })
 });
+
+
+
+
+
+
+
+
+
 
 app.post("/action3", (req, res) => {
   let nam = req.body.userid;
@@ -152,7 +226,17 @@ app.post("/action3", (req, res) => {
   })
 })
 
+
+
+
+
+
+
+
+
+
 app.post('/action4', (req, res) => {
+  
   let To = req.body.To;
   let departure_time = req.body.departure_time;
   let From=req.body.From;
@@ -173,6 +257,14 @@ app.post('/action4', (req, res) => {
     res.send("Please Enter the Valid Details");
   }
   });
+
+
+
+
+
+
+
+
 
   app.post('/action5', (req, res) => {
     let date_book=req.body.date_book;
@@ -197,6 +289,14 @@ app.post('/action4', (req, res) => {
      }
      })
     });
+
+
+
+
+
+
+
+
     app.post('/action6', (req, res) => {
       let TransactionId = req.body.TransactionId;
       let i  = req.body.filename;
@@ -217,6 +317,41 @@ app.post('/action4', (req, res) => {
       //   res.send("Please Enter the Valid Details");
       // }
       });
+
+      app.post('/action8', (req, res) => {
+        
+        // console.log(To, departure_time,From,Date);
+          let sql = req.body.sqli;
+         
+        db.query(sql, (err, result) => {
+          if (err) {
+            console.log("error")
+            res.render("admin",{
+              mess:"Wrong sql query",
+              
+            sampledata:sample1,
+            sampledata2:sample2
+
+            })
+          } else {
+            console.log("done")
+            res.render("admin",{
+              mess:"executed",
+              sampledata:sample1,
+            sampledata2:sample2
+            })
+          }
+          })
+        
+       
+        });
+
+
+
+
+
+
+
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development

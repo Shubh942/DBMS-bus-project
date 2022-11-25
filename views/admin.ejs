@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBMS</title>
+</head>
+<style>
+    .navi{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        background-color:blue;
+        color: white;
+    }
+    .head1{
+        text-align: center;
+    }
+    .student{
+        
+        justify-content: center;
+        text-align: center;
+        background-color: white;
+        color: black;
+        border: 2px solid green;
+        border-radius: 10px;
+        background-color:aliceblue ;
+    }
+    .whole{
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.5rem;
+        padding-left: 180px;
+        padding-right: 180px;
+        background-color:aliceblue ;
+    }
+    .year{
+        display: flex;
+        gap: 10px;
+    }
+    .option h2{
+        border: 2px solid black;
+        border-radius: 5px;
+    }
+    .question{
+        padding-left: 100px;
+        padding-right: 100px;
+        border: 2px solid green;
+        border-radius: 10px;
+        background-color:aliceblue ;
+    }
+    .subm{
+        padding-left: 80vw;
+
+    }
+    #sub{
+        text-align: center;
+        padding: 10px 30px 10px 30px;
+        border-radius: 10px;
+        background-color: green;
+        color: white;
+    }
+    .main2{
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<body>
+    <div class="navi">
+        <div class="head">
+            <h2>PDPM Indian Institute of Information Technology, Design and Manufacturing, Jabalpur</h2>
+            
+        </div>
+    </div>
+    <br><br>
+    <div class="student">
+        <div class="head1">
+            <h2>Admin panel</h2>
+        </div>
+       
+        
+    <br><br>
+
+</div></center>
+<center>
+<form action="/action8" method="post">
+    <label for="text"><h1>Sql</h1></label>
+    <br>
+    <textarea type="text" name="sqli"></textarea>
+    <br><br>
+    <input type="submit" value="submit">
+    <p><h2><%= mess %> </h2></p>
+</form>
+</center>
+<br><br>
+<div class="main2">
+    
+<div class="main">
+  <center> 
+
+    
+    <table class="table" border="1px">
+  
+  <thead>
+    <tr>
+
+      
+      <th scope="col">S no.</th>
+      <th scope="col">departure_time </th>
+      <th scope="col">drop_point </th>
+      <th scope="col">pick_up </th>
+      <th scope="col">date_book </th>
+      <th scope="col">email_id </th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% if(sampledata2.length<1){ %> 
+      <th scope="row">1</th>
+      <td>No data</td>
+
+      <% } else { 
+        var i=1;
+      sampledata2.forEach(function(data){
+        %>
+        <tr>
+          <th scope="row"><%= i %> </th>
+          <td><%= data.departure_time %> </td>
+          <td><p><%= data.drop_point %> </p> <br /> </td>
+          <td><p><%= data.pick_up %> </p> <br /> </td>
+          <td><p><%= data.date_book %> </p> <br /> </td>
+          
+          <td><p><%= data.Email_Id %> </p> <br /> </td>
+
+        </tr>
+        <% 
+        i=i+1;
+      });
+    } 
+      %> 
+    
+     
+
+ 
+   
+  </tbody>
+</table></center>
+</div>
+
+
+<div class="main">
+    <center> 
+  
+      
+      <table class="table" border="1px">
+    
+    <thead>
+      <tr>
+  
+        
+        <th scope="col">S no.</th>
+        <th scope="col">username </th>
+        <th scope="col">password </th>
+        <th scope="col">payment_details</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      <% if(sampledata.length<1){ %> 
+        <th scope="row">1</th>
+        <td>No data</td>
+  
+        <% } else { 
+          var i=1;
+        sampledata.forEach(function(data){
+          %>
+          <tr>
+            <th scope="row"><%= i %> </th>
+            <td><%= data.username %> </td>
+            <td><p><%= data.password %> </p> <br /> </td>
+            <td><p><%= data.payment_details %> </p> <br /> </td>
+          </tr>
+          <% 
+          i=i+1;
+        });
+      } 
+        %> 
+      
+       
+  
+   
+     
+    </tbody>
+  </table></center>
+  </div>
+</div>
+
+
+
+
+
+<script src="/js/script.js"></script>
+</body>
+</html>
