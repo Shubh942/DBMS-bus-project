@@ -14,7 +14,13 @@
     <link rel="stylesheet" href="aos-by-red.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
-    
+    <script >
+      window.onload=function(){//from ww  w . j  a  va2s. c  o  m
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("date_book")[0].setAttribute('min', today);
+      }
+  
+        </script> 
     <title>IIITDMJ BUS SERVICE</title>
   </head>
  
@@ -63,7 +69,7 @@
                   <span id="message1" style="color:red"> </span>
                  
               </select>
-            <input type="date" id="txtName" class="form-control" name="date_book" placeholder="dd/mm/yyyy" value=" <%= title3 %> " required />
+            <input type="date" id="txtName" class="form-control"  min="<?= date('Y-m-d'); ?>" name="date_book" placeholder="dd/mm/yyyy" value=" <%= title3 %> " required />
             <select name="departure_time" class="places1">
               <option value="op" name="departure_time"> <%= title2 %> </option>
               <option value="3:30 PM" name="departure_time">3:30 PM</option>
