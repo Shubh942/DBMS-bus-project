@@ -218,15 +218,15 @@ app.post("/action3", (req, res) => {
   });
 });
 let asql;
+let To 
+  let departure_time
+  let From 
+  let Date 
 app.post("/action4", (req, res) => {
   let To = req.body.To;
   let departure_time = req.body.departure_time;
   let From = req.body.From;
   let Date = req.body.Date;
-
-  time=departure_time;
-  drop=To;
-  date=Date;
   console.log(To, departure_time, From, Date);
   let sql = `INSERT INTO bus_info (departure_time,drop_point,pick_up,date_book,Email_Id) VALUES ('${time}','${drop}','${From}','${date}','${namq}') `;
   asql=sql;
@@ -267,25 +267,18 @@ app.post("/action5", (req, res) => {
 });
 
 app.post("/action6", (req, res) => {
-   let transaction_id = req.body.transaction_id;
-  //  let ticket_number=1;
-   sql=`INSERT INTO Ticket (drop_point,date_book,transaction_id,departure_time) VALUES ('${drop}','${date}','${transaction_id}','${time}')`;
+
  
-    db.query(sql, (err, result) => {
+    db.query(asql, (err, result) => {
       if (err) {
         throw err;
       } else {
-
-            // res.end();
-            res.render('cancel2',{
-              mess:"Your ticket has been booked sucessfully"
-            
-            })
-            console.log("Booked...");
-          }
-        })
+        res.render("done");
+        console.log("Booked...");
+      }
     });
-
+  
+});
 
 app.post("/action8", (req, res) => {
   // console.log(To, departure_time,From,Date);
@@ -336,6 +329,102 @@ app.post("/action10", (req, res) => {
 
     }
   });
+});
+
+
+
+app.post("/action6", (req, res) => {
+
+  let from = "impostercrewfreedom@gmail.com";
+  let To = req.body.To;
+  let departure_time = req.body.departure_time;
+  // let From = req.body.From;
+  let Date = req.body.Date;
+  db.query(asql, (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      res.render("done");
+      console.log("Booked...");
+      var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "impostercrewfreedom@gmail.com",
+          pass: "avuwpktrouxkalqw",
+        },
+      });
+      var mailoptions = {
+        from: from,
+        to: namq,
+        subject: "Bus Ticket",
+        html: `
+        
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="all">
+    <section class="h-100 gradient-form">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+              <div class="card rounded-3 text-black">
+                <div class="row g-0">
+                  <div class="col-lg-6">
+                    <div class="card-body p-md-5 mx-md-4">
+      
+                      <div class="text-center">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                          style="width: 185px;" alt="logo">
+                        <h4 class="mt-1 mb-5 pb-1">We are IIITDMJ Travelling team</h4>
+                      </div>
+      
+                      <h2>You sucessfully booked the ticket</h2>
+                      <br>
+                      <h4>Roll_no</h4>
+                      <h4>Drop point: ${To}</h4>
+                      <h4>Booking date: ${Date}</h4>
+                      <h4>Departure time: ${departure_time}</h4>
+      
+                    </div>
+                  </div>
+                  <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                    <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                      <h4 class="mb-4">We are more than just a company</h4>
+                      <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+</body>
+</html>
+        `,
+      };
+      transporter.sendMail(mailoptions, (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Email send: " + result.response);
+        }
+      });
+      
+    }
+  });
+
 });
 
 // error handler
