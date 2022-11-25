@@ -308,16 +308,19 @@ app.post("/action10", (req, res) => {
     if (err) {
       throw err;
     } else {
-      let sql2 = `UPDATE passenger SET Payment_details='${upi}' WHERE username='${namq}' `;
-      db.query(sql2, (err, result) => {
-        if (err) {
-          throw err;
-        } else {
-          res.render("cancel2", {
-            mess: "Your ticket cancelled sucessfully and payment proceeded to your upiId sortly",
-          });
-        }
-      });
+
+        let sql2=`UPDATE passenger SET Payment_details='${upiid}' WHERE username='${namq}' `
+        db.query(sql2, (err, result) => {
+          if (err) {
+            throw err;
+          } else {
+            res.render('cancel2',{
+              mess:"Your ticket cancelled sucessfully and payment proceeded to your upiId sortly"
+            })
+          }
+          })
+
+
     }
   });
 });
