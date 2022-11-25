@@ -370,7 +370,7 @@ app.post("/action10",(req,res)=>{
     if (err) {
       throw err;
     } else {
-        let sql2=`UPDATE passenger SET Payment_details='${upi}' WHERE username='${namq}' `
+        let sql2=`UPDATE passenger SET Payment_details='${upiid}' WHERE username='${namq}' `
         db.query(sql2, (err, result) => {
           if (err) {
             throw err;
