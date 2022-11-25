@@ -14,6 +14,7 @@ var createaccountRouter = require('./routes/createaccount');
 var forgetRouter = require('./routes/forget');
 var ticketRouter = require('./routes/ticket');
 var paymentRouter = require('./routes/payment');
+var timetableRouter = require('./routes/timetable');
 
 var app = express();
 app.use(express.json());
@@ -51,9 +52,10 @@ app.use('/createaccount', createaccountRouter);
 app.use('/forget', forgetRouter);
 app.use('/ticket', ticketRouter);
 app.use('/payment',paymentRouter);
+app.use('/timetable',timetableRouter);
 
 
-// let nam="s1@gmail.com";
+let namq;
 
 
 app.post('/action1', (req, response) => {
@@ -114,6 +116,7 @@ app.post('/action2', (req, res) => {
 
 app.post("/action3", (req, res) => {
   let nam = req.body.userid;
+  namq = nam;
   // let from="impostercrewfreedom@gmail.com";
   let from = "impostercrewfreedom@gmail.com";
   let sql = `SELECT password from passenger where username='${nam}' `;
@@ -155,7 +158,7 @@ app.post('/action4', (req, res) => {
   let From=req.body.From;
   let Date=req.body.Date;
   console.log(To, departure_time,From,Date);
-    let sql = `INSERT INTO bus_info (departure_time,drop_point,pick_up,date_book,Email_Id) VALUES ('${departure_time}','${To}','${From}','${Date}','${nam}') `;
+    let sql = `INSERT INTO bus_info (departure_time,drop_point,pick_up,date_book,Email_Id) VALUES ('${departure_time}','${To}','${From}','${Date}','${namq}') `;
     if(From!=To){
   db.query(sql, (err, result) => {
     if (err) {
