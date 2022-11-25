@@ -67,7 +67,7 @@ app.get("/cancel", (req, res) => {
   }
 });
 
-let namq;
+let namq,time,drop,date ;
 
 let sample2;
 let sample1;
@@ -223,9 +223,14 @@ app.post("/action4", (req, res) => {
   let departure_time = req.body.departure_time;
   let From = req.body.From;
   let Date = req.body.Date;
+
+  time=departure_time;
+  drop=To;
+  date=Date;
   console.log(To, departure_time, From, Date);
-  let sql = `INSERT INTO bus_info (departure_time,drop_point,pick_up,date_book,Email_Id) VALUES ('${departure_time}','${To}','${From}','${Date}','${namq}') `;
+  let sql = `INSERT INTO bus_info (departure_time,drop_point,pick_up,date_book,Email_Id) VALUES ('${time}','${drop}','${From}','${date}','${namq}') `;
   asql=sql;
+  
   if (From != To) {
 
     res.redirect('/payment')
@@ -238,6 +243,7 @@ app.post("/action4", (req, res) => {
 app.post("/action5", (req, res) => {
   let date_book = req.body.date_book;
   let departure_time = req.body.departure_time;
+  
   let drop_point = req.body.drop_point;
 
   let sql = `SELECT count(*) as Available_Seats From bus_info WHERE drop_point='${drop_point}' and date_book='${date_book}' and departure_time='${departure_time}'`;
@@ -261,18 +267,25 @@ app.post("/action5", (req, res) => {
 });
 
 app.post("/action6", (req, res) => {
-
+   let transaction_id = req.body.transaction_id;
+  //  let ticket_number=1;
+   sql=`INSERT INTO Ticket (drop_point,date_book,transaction_id,departure_time) VALUES ('${drop}','${date}','${transaction_id}','${time}')`;
  
-    db.query(asql, (err, result) => {
+    db.query(sql, (err, result) => {
       if (err) {
         throw err;
       } else {
-        res.render("done");
-        console.log("Booked...");
-      }
+
+            // res.end();
+            res.render('cancel2',{
+              mess:"Your ticket has been booked sucessfully"
+            
+            })
+            console.log("Booked...");
+          }
+        })
     });
-  
-});
+
 
 app.post("/action8", (req, res) => {
   // console.log(To, departure_time,From,Date);

@@ -58,7 +58,7 @@
             <br><br>
             <div> -->
                 <br> <br>
-                <button type="submit" value="submit" class="book" onclick="myFunction()">Submit</button>
+                <button type="submit" value="submit" class="book" onclick="validate()">Submit</button>
                 <img id="imagePreview">
             </div>
             
@@ -66,5 +66,18 @@
         </form>
     </div>
 </body>
-
+<script> 
+   var alert = document.getElementById("message");
+    var file = document.getElementById("file");
+  
+    
+      
+    function validate() {
+        if(file.files.length == 0 ){
+            alert.innerHTML = "No files selected Please select a file";
+        } else {
+            alert.innerHTML = "";
+        }
+    }
+</script> 
 </html>
