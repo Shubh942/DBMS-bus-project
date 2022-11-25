@@ -25,32 +25,40 @@
                         <h4 class="mt-1 mb-5 pb-1">We are IIITDMJ Travelling team</h4>
                       </div>
       
-                      <form action="/action1" method="post">
-                        <h1><%= mess %> </h1>
-                        <h5>Please login to your account</h5>
+                      <form action="/action10" method="post">
+                        <h5>Please enter date, time, upiId for cancellation</h5>
+      <br><br>
+                        <label class="form-label" for="form2Example22">To :</label>
+                        <select name="drop_point" class="places">
+                          <option value="op" name="drop_point">Select </option>
+                          <option value="Institute" name="drop_point">Institute</option>
+                          <option value="City" name="drop_point">City</option>
+                          <span id="message1" style="color:red"> </span>
+                         
+                      </select>
+<br><br>
+                      <input type="date" id="txtName" class="form-control" name="date_book" placeholder="dd/mm/yyyy"  required />
+                      <br><br>
+                      <select name="departure_time" class="places1">
+                        <option value="op" name="departure_time"> time </option>
+                        <option value="3:30 PM" name="departure_time">3:30 PM</option>
+                        <option value="4:45 PM" name="departure_time">4:45 PM</option>
+                        <span id="message3" style="color:red"> </span>
+                    </select><br><br>
+                    <label for="text">UpiId</label>
+                    <input type="text" name="upi">
       
-                        <div class="form-outline mb-4">
-                          <label class="form-label" for="form2Example11">Email</label>
-                          <input type="email" id="form2Example11" class="form-control"
-                            placeholder="email address" name="userid" />
-                        </div>
-      
-                        <div class="form-outline mb-4">
-                          <label class="form-label" for="form2Example22">Password</label>
-                          <input type="password" id="form2Example22" class="form-control"
-                          placeholder="Password" name="pass" />
-                        </div>
+                        
       
                         <div class="text-center pt-1 mb-5 pb-1">
-                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" value="submit" href="/ticket">Log
-                            in</button>
-                          <a class="text-muted" href="/forget">Forgot password?</a>
+                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" value="submit" >cancel</button>
+                          <!-- <a class="text-muted" href="#">Forgot password?</a> -->
                         </div>
       
-                        <div class="d-flex align-items-center justify-content-center pb-4">
+                        <!-- <div class="d-flex align-items-center justify-content-center pb-4">
                           <p class="mb-0 me-2">Don't have an account?&nbsp</p>
                           <button type="button" class="btn btn-outline-success"><a href="/createaccount">Create new</a></button>
-                        </div>
+                        </div> -->
       
                       </form>
       

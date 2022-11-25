@@ -70,14 +70,26 @@ app.use('/payment',paymentRouter);
 app.use('/timetable',timetableRouter);
 
 
+app.get('/cancel',(req,res)=>{
+  console.log(namq)
+  if (namq!=undefined) {
+    
+    res.render("cancel")
+  }
+  else{
+    res.render("login",{
+      mess:"Please login first"
+    })
+  }
+})
 
+let namq;
 
-let namq
-
-let sample2
-let sample1
+let sample2;
+let sample1;
 app.post('/action1', (req, response) => {
-  nam = req.body.userid;
+ let nam = req.body.userid;
+ namq=nam;
   let passwd = req.body.pass;
   //  let post={userid:`${nam}`,pass:`${passwd}`}
   if (nam=='admin@gmail.com' && passwd=='12345') {
@@ -119,7 +131,7 @@ app.post('/action1', (req, response) => {
   else{
   let sql = `SELECT * FROM passenger WHERE username = '${nam}' AND password = '${passwd}'`;
   console.log(nam, passwd);
-  namq=nam;
+  
   db.query(sql, (error, results) => {
     if (error) throw error;
     // If the account exists
@@ -128,6 +140,7 @@ app.post('/action1', (req, response) => {
       // Redirect to home page
       response.redirect('/ticket');
     } else {
+      namq="";
       response.send('Incorrect Username and/or Password!');
     }
   
@@ -347,7 +360,29 @@ app.post('/action4', (req, res) => {
         });
 
 
-
+app.post("/action10",(req,res)=>{
+  let To=req.body.drop_point
+  let date=req.body.date_book
+  let time=req.body.departure_time
+  let upiid=req.body.upi
+  let sql=`DELETE FROM bus_info WHERE departure_time='${time}' AND drop_point='${To}' and date_book='${date}' and Email_Id='${namq}'`
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+        let sql2=`UPDATE passenger SET Payment_details='${upi}' WHERE username='${namq}' `
+        db.query(sql2, (err, result) => {
+          if (err) {
+            throw err;
+          } else {
+            res.render('cancel2',{
+              mess:"Your ticket cancelled sucessfully and payment proceeded to your upiId sortly"
+            })
+          }
+          })
+    }
+    })
+})
 
 
 
