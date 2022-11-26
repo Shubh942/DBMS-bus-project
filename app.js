@@ -105,7 +105,7 @@ app.post("/action1", (req, response) => {
         sampledata: datafromtable,
         sampledata2: sample2,
       });
-      // console.log(datafromtable);
+      console.log(datafromtable);
     });
   } else {
     let sql = `SELECT * FROM passenger WHERE username = '${nam}' AND password = '${passwd}'`;
@@ -374,6 +374,7 @@ app.post("/action6", (req, res) => {
       
                       <h2>You sucessfully booked the ticket</h2>
                       <br>
+                      <img src="https://img.freepik.com/free-photo/air-ticket-flight-booking-concept_53876-121109.jpg?size=626&ext=jpg&uid=R86079653&ga=GA1.2.1556163120.1669394195&semt=sph" alt="img">
                       <h4>Roll_no</h4>
                       <h4>Drop point: ${To}</h4>
                       <h4>Booking date: ${Date}</h4>
