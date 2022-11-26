@@ -67,7 +67,7 @@ app.get("/cancel", (req, res) => {
   }
 });
 
-let namq,time,drop,date ;
+let namq,time,drop,date,Roll ;
 
 let sample2;
 let sample1;
@@ -149,6 +149,8 @@ app.post("/action2", (req, res) => {
   let nam = req.body.userid;
   let passwd = req.body.pass;
   let roll = req.body.roll;
+  Roll=roll;
+
   let from = "impostercrewfreedom@gmail.com";
   let sql = `INSERT INTO passenger (username, Roll_No, Payment_details, password) VALUES ('${nam}', '${roll}', '', '${passwd}') `;
   db.query(sql, (err, result) => {
@@ -218,15 +220,15 @@ app.post("/action3", (req, res) => {
   });
 });
 let asql;
-let To 
-  let departure_time
-  let From 
-  let Date 
+
 app.post("/action4", (req, res) => {
   let To = req.body.To;
   let departure_time = req.body.departure_time;
   let From = req.body.From;
   let Date = req.body.Date;
+  time=departure_time;
+  drop=To;
+  date=Date;
   console.log(To, departure_time, From, Date);
   let sql = `INSERT INTO bus_info (departure_time,drop_point,pick_up,date_book,Email_Id) VALUES ('${time}','${drop}','${From}','${date}','${namq}') `;
   asql=sql;
@@ -247,12 +249,13 @@ app.post("/action5", (req, res) => {
   let drop_point = req.body.drop_point;
 
   let sql = `SELECT count(*) as Available_Seats From bus_info WHERE drop_point='${drop_point}' and date_book='${date_book}' and departure_time='${departure_time}'`;
-  // console.log(drop_point,date_book,departure_time);
+  console.log(drop_point,date_book,departure_time);
   db.query(sql, (err, result) => {
     if (err) {
       throw err;
     } else {
       a = result[0].Available_Seats;
+      console.log(a);
       let b = 40 - a;
       res.render("index", {
         title: b,
@@ -266,19 +269,19 @@ app.post("/action5", (req, res) => {
   });
 });
 
-app.post("/action6", (req, res) => {
+// app.post("/action6", (req, res) => {
 
  
-    db.query(asql, (err, result) => {
-      if (err) {
-        throw err;
-      } else {
-        res.render("done");
-        console.log("Booked...");
-      }
-    });
+//     db.query(asql, (err, result) => {
+//       if (err) {
+//         throw err;
+//       } else {
+//         res.render("done");
+//         console.log("Booked...");
+//       }
+//     });
   
-});
+// });
 
 app.post("/action8", (req, res) => {
   // console.log(To, departure_time,From,Date);
@@ -306,10 +309,12 @@ app.post("/action8", (req, res) => {
 
 app.post("/action10", (req, res) => {
   let To = req.body.drop_point;
-  let date = req.body.date_book;
+  let Date = req.body.date_book;
   let time = req.body.departure_time;
   let upiid = req.body.upi;
-  let sql = `DELETE FROM bus_info WHERE departure_time='${time}' AND drop_point='${To}' and date_book='${date}' and Email_Id='${namq}'`;
+
+  
+  let sql = `DELETE FROM bus_info WHERE departure_time='${time}' AND drop_point='${To}' and date_book='${Date}' and Email_Id='${namq}'`;
   db.query(sql, (err, result) => {
     if (err) {
       throw err;
@@ -332,28 +337,95 @@ app.post("/action10", (req, res) => {
 });
 
 
-
-app.post("/action6", (req, res) => {
+let q=0,e=0,i=0
+let ticket_num;
+let Roll_no;
+app.post("/action6", async(req, res) => {
 
   let from = "impostercrewfreedom@gmail.com";
-  let To = req.body.To;
-  let departure_time = req.body.departure_time;
-  // let From = req.body.From;
-  let Date = req.body.Date;
-  db.query(asql, (err, result) => {
-    if (err) {
+  // let To = req.body.To;
+  // let departure_time = req.body.departure_time;
+  // // let From = req.body.From;
+  // let Date = req.body.Date;
+  let transaction_id = req.body.transaction_id;
+  let ticket_number;
+  
+
+
+  
+  
+  
+  // db.query(asql, async(err, result) => {
+  //   if (err) {
+  //     throw err;
+  //   } else {
+  //     res.render("done");
+  //     console.log("Booked...");
+      
+  //   }
+  // });
+  //      db.query(`SELECT ticket_number FROM Ticket WHERE transaction_id='${transaction_id}'`,async(err,result)=>{
+  //       if(err){
+  //         throw err;
+  //       }
+  //       else{
+  //         ticket_number=await result[0].ticket_number;
+  //         console.log(ticket_number);
+  //         q=1;
+          
+  //       }
+  //     });
+    
+  // db.query(`SELECT Email_Id FROM bus_info WHERE transaction_id='${transaction_id}'`,async(err,result)=>{
+  //   if(err){
+  //     throw err;
+  //   }
+  //   else{
+  //     email=await result[0].Email_Id;
+  //     e=1;
+  //   }
+  // })
+
+  
+    
+ticket_num=ticket_number;
+// console.log(ticket_num);
+      db.query(`SElECT Roll_No FROM passenger WHERE username='${namq}'`,async(err,result)=>{
+        if(err){
+          throw err;
+        }
+        else{
+          Roll_no=await result[0].Roll_No;
+          console.log(Roll_no);
+          e=1;
+        }
+      })
+console.log(q,e);
+let sql = `INSERT INTO Ticket( drop_point, date_book, transaction_id, departure_time) VALUES ('${drop}','${date}','${transaction_id}','${time}'); `;
+ 
+  db.query(sql, (err,result)=>{
+    if(err){
       throw err;
-    } else {
-      res.render("done");
+    }
+    else{
+      res.render('done')
       console.log("Booked...");
-      var transporter = nodemailer.createTransport({
+    }
+  })
+
+      var transporter = await nodemailer.createTransport({
         service: "gmail",
         auth: {
           user: "impostercrewfreedom@gmail.com",
           pass: "avuwpktrouxkalqw",
         },
       });
-      var mailoptions = {
+// let ticket_num;
+
+// let Roll_no=1;
+
+
+      var mailoptions = await {
         from: from,
         to: namq,
         subject: "Bus Ticket",
@@ -367,6 +439,7 @@ app.post("/action6", (req, res) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
 </head>
 <body>
 
@@ -388,10 +461,12 @@ app.post("/action6", (req, res) => {
       
                       <h2>You sucessfully booked the ticket</h2>
                       <br>
-                      <h4>Roll_no</h4>
-                      <h4>Drop point: ${To}</h4>
-                      <h4>Booking date: ${Date}</h4>
-                      <h4>Departure time: ${departure_time}</h4>
+                      <h4 id="number">Email-Id: ${namq}</h4>
+                      
+                      
+                      <h4>Drop point: ${drop}</h4>
+                      <h4>Booking date: ${date}</h4>
+                      <h4>Departure time: ${time}</h4>
       
                     </div>
                   </div>
@@ -411,6 +486,9 @@ app.post("/action6", (req, res) => {
       </section>
     </div>
 </body>
+<script>
+  document.getElementById("number").innerHTML="Ticket Number: "+${ticket_num}";
+</script>
 </html>
         `,
       };
@@ -422,10 +500,12 @@ app.post("/action6", (req, res) => {
         }
       });
       
-    }
-  });
+    
+  
+    
+    });
 
-});
+
 
 // error handler
 app.use(function (err, req, res, next) {
