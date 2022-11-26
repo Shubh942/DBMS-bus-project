@@ -67,7 +67,7 @@ app.get("/cancel", (req, res) => {
   }
 });
 
-let namq,time,drop,date,Roll ;
+let namq, time, drop, date, Roll;
 
 let sample2;
 let sample1;
@@ -149,7 +149,7 @@ app.post("/action2", (req, res) => {
   let nam = req.body.userid;
   let passwd = req.body.pass;
   let roll = req.body.roll;
-  Roll=roll;
+  Roll = roll;
 
   let from = "impostercrewfreedom@gmail.com";
   let sql = `INSERT INTO passenger (username, Roll_No, Payment_details, password) VALUES ('${nam}', '${roll}', '', '${passwd}') `;
@@ -226,17 +226,17 @@ app.post("/action4", (req, res) => {
   let departure_time = req.body.departure_time;
   let From = req.body.From;
   let Date = req.body.Date;
-  time=departure_time;
-  drop=To;
-  date=Date;
+  time = departure_time;
+  drop = To;
+  date = Date;
   console.log(To, departure_time, From, Date);
   let sql = `INSERT INTO bus_info (departure_time,drop_point,pick_up,date_book,Email_Id) VALUES ('${time}','${drop}','${From}','${date}','${namq}') `;
-  asql=sql;
-  
+  asql = sql;
+
   if (From != To) {
 
     res.redirect('/payment')
-    
+
   } else {
     res.send("Please Enter the Valid Details");
   }
@@ -245,11 +245,11 @@ app.post("/action4", (req, res) => {
 app.post("/action5", (req, res) => {
   let date_book = req.body.date_book;
   let departure_time = req.body.departure_time;
-  
+
   let drop_point = req.body.drop_point;
 
   let sql = `SELECT count(*) as Available_Seats From bus_info WHERE drop_point='${drop_point}' and date_book='${date_book}' and departure_time='${departure_time}'`;
-  console.log(drop_point,date_book,departure_time);
+  console.log(drop_point, date_book, departure_time);
   db.query(sql, (err, result) => {
     if (err) {
       throw err;
@@ -271,7 +271,7 @@ app.post("/action5", (req, res) => {
 
 // app.post("/action6", (req, res) => {
 
- 
+
 //     db.query(asql, (err, result) => {
 //       if (err) {
 //         throw err;
@@ -280,7 +280,7 @@ app.post("/action5", (req, res) => {
 //         console.log("Booked...");
 //       }
 //     });
-  
+
 // });
 
 app.post("/action8", (req, res) => {
@@ -313,23 +313,23 @@ app.post("/action10", (req, res) => {
   let time = req.body.departure_time;
   let upiid = req.body.upi;
 
-  
+
   let sql = `DELETE FROM bus_info WHERE departure_time='${time}' AND drop_point='${To}' and date_book='${Date}' and Email_Id='${namq}'`;
   db.query(sql, (err, result) => {
     if (err) {
       throw err;
     } else {
 
-        let sql2=`UPDATE passenger SET Payment_details='${upiid}' WHERE username='${namq}' `
-        db.query(sql2, (err, result) => {
-          if (err) {
-            throw err;
-          } else {
-            res.render('cancel2',{
-              mess:"Your ticket cancelled sucessfully and payment proceeded to your upiId sortly"
-            })
-          }
+      let sql2 = `UPDATE passenger SET Payment_details='${upiid}' WHERE username='${namq}' `
+      db.query(sql2, (err, result) => {
+        if (err) {
+          throw err;
+        } else {
+          res.render('cancel2', {
+            mess: "Your ticket cancelled sucessfully and payment proceeded to your upiId sortly"
           })
+        }
+      })
 
 
     }
@@ -337,10 +337,8 @@ app.post("/action10", (req, res) => {
 });
 
 
-let q=0,e=0,i=0
-let ticket_num;
-let Roll_no;
-app.post("/action6", async(req, res) => {
+
+app.post("/action6", async (req, res) => {
 
   let from = "impostercrewfreedom@gmail.com";
   // let To = req.body.To;
@@ -348,88 +346,89 @@ app.post("/action6", async(req, res) => {
   // // let From = req.body.From;
   // let Date = req.body.Date;
   let transaction_id = req.body.transaction_id;
-  let ticket_number;
-  
 
 
-  
-  
-  
-  // db.query(asql, async(err, result) => {
+
+
+
+
+
+  db.query(asql, (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      res.render("done");
+      console.log("Booked...");
+
+    }
+  });
+  // let ticket_number;
+  // db.query(`SELECT ticket_number FROM Ticket WHERE transaction_id='${transaction_id}'`, (err, result) => {
   //   if (err) {
   //     throw err;
-  //   } else {
-  //     res.render("done");
-  //     console.log("Booked...");
-      
+  //   }
+  //   else {
+  //     ticket_number = result[0].ticket_number;
+  //     console.log(ticket_number);
+
+
   //   }
   // });
-  //      db.query(`SELECT ticket_number FROM Ticket WHERE transaction_id='${transaction_id}'`,async(err,result)=>{
-  //       if(err){
-  //         throw err;
-  //       }
-  //       else{
-  //         ticket_number=await result[0].ticket_number;
-  //         console.log(ticket_number);
-  //         q=1;
-          
-  //       }
-  //     });
-    
-  // db.query(`SELECT Email_Id FROM bus_info WHERE transaction_id='${transaction_id}'`,async(err,result)=>{
-  //   if(err){
+
+  // db.query(`SELECT Email_Id FROM bus_info WHERE transaction_id='${transaction_id}'`, (err, result) => {
+  //   if (err) {
   //     throw err;
   //   }
-  //   else{
-  //     email=await result[0].Email_Id;
-  //     e=1;
+  //   else {
+  //     email = result[0].Email_Id;
+  //     e = 1;
   //   }
   // })
 
-  
-    
-ticket_num=ticket_number;
-// console.log(ticket_num);
-      db.query(`SElECT Roll_No FROM passenger WHERE username='${namq}'`,async(err,result)=>{
-        if(err){
-          throw err;
-        }
-        else{
-          Roll_no=await result[0].Roll_No;
-          console.log(Roll_no);
-          e=1;
-        }
-      })
-console.log(q,e);
-let sql = `INSERT INTO Ticket( drop_point, date_book, transaction_id, departure_time) VALUES ('${drop}','${date}','${transaction_id}','${time}'); `;
- 
-  db.query(sql, (err,result)=>{
-    if(err){
+
+
+  // ticket_num=ticket_number;
+  // // console.log(ticket_num);
+        // db.query(`SElECT Roll_No FROM passenger WHERE username='${namq}'`,(err,result)=>{
+        //   if(err){
+        //     throw err;
+        //   }
+        //   else{
+        //     Roll_no= result[0].Roll_No;
+        //     console.log(Roll_no);
+          
+        //   }
+        // })
+  // console.log(q,e);
+  let sql = `INSERT INTO Ticket( drop_point, date_book, transaction_id, departure_time) VALUES ('${drop}','${date}','${transaction_id}','${time}'); `;
+
+  db.query(sql, (err, result) => {
+    if (err) {
       throw err;
     }
-    else{
+    else {
       res.render('done')
       console.log("Booked...");
     }
   })
 
-      var transporter = await nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "impostercrewfreedom@gmail.com",
-          pass: "avuwpktrouxkalqw",
-        },
-      });
-// let ticket_num;
+  var transporter = await nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "impostercrewfreedom@gmail.com",
+      pass: "avuwpktrouxkalqw",
+    },
+  });
+  // let ticket_num;
 
-// let Roll_no=1;
+  // let Roll_no=1;
 
 
-      var mailoptions = await {
-        from: from,
-        to: namq,
-        subject: "Bus Ticket",
-        html: `
+  var mailoptions = await {
+    from: from,
+    to: namq,
+    subject: "Bus Ticket",
+    html: `
         
 <!DOCTYPE html>
 <html lang="en">
@@ -486,24 +485,18 @@ let sql = `INSERT INTO Ticket( drop_point, date_book, transaction_id, departure_
       </section>
     </div>
 </body>
-<script>
-  document.getElementById("number").innerHTML="Ticket Number: "+${ticket_num}";
-</script>
 </html>
         `,
-      };
-      transporter.sendMail(mailoptions, (err, result) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Email send: " + result.response);
-        }
-      });
-      
-    
-  
-    
-    });
+  // text: `"Ticket Number: " + ${ticket_number} `,
+  };
+  transporter.sendMail(mailoptions, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Email send: " + result.response);
+    }
+  });
+});
 
 
 
